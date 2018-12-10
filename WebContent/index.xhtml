@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/szablon.xhtml">
+<ui:define name="content">
+<h1>Witaj w sklepie internetowym</h1>
+<h:panelGrid columnClasses="komorka" columns="2">
+<ui:include src="/kategorie.xhtml"></ui:include>
+<h:panelGroup>
+<h:form>
+<h4>Twój koszyk</h4>
+<h:commandLink action="koszyk.xhtml" value="Przejdz"/>
+<h4>Przejdz do wybranego produktu</h4>
+<h:selectOneMenu value="#{topProduktyBean.wybranyProdukt}">
+<f:selectItems value="#{topProduktyBean.topProdukty}"/>
+<f:converter converterId="produktConverter"></f:converter>
+</h:selectOneMenu>
+<h:commandButton action="produktSzczegolowy.xhtml" value="Idz"></h:commandButton>
+</h:form>
+</h:panelGroup>
+</h:panelGrid>
+</ui:define>
+</ui:composition>
+</html>

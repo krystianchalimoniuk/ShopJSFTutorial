@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15443700647320" configfile="/Sklep/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="koszyk.xhtml" id="pf15444510859000" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf15444510859011" path="/koszyk.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="zakonczZamowienie.xhtml" id="pf15444510859012" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf15444523628223" inlinks="pf15444510859011" path="/zakonczZamowienie.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" id="pf15444523628224" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf15444523628223" path="/index.xhtml"/>
+  <links id="pf15444510859011" target="pf15444510859012" source="pf15444510859000" outcome="zakoncz" redirect="true"/>
+  <links id="pf15444523628223" target="pf15444523628224" source="pf15444510859012" outcome="ok" redirect="true" fromaction="#{KoszykBean.zakonczZamowienie}"/>
+</pageflow:Pageflow>

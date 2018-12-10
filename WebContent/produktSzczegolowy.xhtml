@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/szablon.xhtml">
+<ui:define name="content">
+<h:form>
+<h2><h:outputText value="#{produktSzczegolowyBean.wybranyProdukt.nazwa}"/></h2>
+<h:panelGrid column="2" border="1">
+<h:outputText value="Cena"/>
+<h:outputFormat value="{0} zł">
+<f:param value="#{produktSzczegolowyBean.wybranyProdukt.cena}"/>
+</h:outputFormat>
+<h:outputText value="Opis:"/>
+<h:outputText value="#{produktSzczegolowyBean.wybranyProdukt.opis}"/>
+<h:commandButton action="#{koszykBean.dodajDoKoszyka}" actionListener="#{koszykBean.actionListener}" value="Dodaj do koszyka">
+<f:param name="produktId" value="#{produktSzczegolowyBean.wybranyProdukt.id}"/>
+</h:commandButton>
+</h:panelGrid>
+</h:form>
+</ui:define>
+</ui:composition>
+
+
+</html>

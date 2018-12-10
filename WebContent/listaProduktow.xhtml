@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/szablon.xhtml">
+<ui:define name="content">
+<h2>Lista produktów dla kategorii #{listaProduktowBean.kategoria.nazwa}</h2>
+<h:form>
+<h:dataTable id="tabelaProduktów" value="#{listaProduktowBean.modelProdukty}" var="produkt">
+<h:column>
+<f:facet name="header">Nazwa</f:facet>
+<h:outputLink value="produktSzczegolowy.xhtml">
+<f:param name="id" value="#{produkt.id}"/>
+<h:outputText value="#{produkt.nazwa}"></h:outputText>
+</h:outputLink>
+</h:column>
+<h:column>
+<f:facet name="header">Cena</f:facet>
+<h:outputFormat value="#{produkt.cena}"/>
+</h:column>
+<h:column>
+<f:facet name="header">Dodaj</f:facet>
+<h:commandButton action="#{koszykBean.dodajDoKoszyka}" value="Dodaj">
+<f:setPropertyActionListener value="#{produkt}" target="#{koszykBean.wybranyProdukt}"></f:setPropertyActionListener>
+</h:commandButton>
+</h:column>
+</h:dataTable>
+<h:commandLink rendered="#{listaProduktowBean.poprzedni}">&laquo;</h:commandLink>
+<h:commandLink rendered="#{listaProduktowBean.nastepny}">&raquo;</h:commandLink>
+<br/>
+<h:commandButton value="Do koszyka"></h:commandButton>
+<h:commandButton value="Główna"></h:commandButton>
+</h:form>
+</ui:define>
+</ui:composition>
+</html>

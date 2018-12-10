@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/szablon.xhtml">
+<ui:define name="content">
+<h2>Koszyk</h2>
+<h:form>
+<h:dataTable value="#{koszykBean.zamowienie.skladniki}" var="skladnik">
+<h:column>
+	<f:facet name="header">Nazwa</f:facet>
+	<h:outputText value="#{skladnik.produkt.nazwa}"></h:outputText>
+</h:column>
+<h:column>
+	<f:facet name="header">Cena</f:facet>
+	<h:outputText value="#{skladnik.cena}"></h:outputText>
+</h:column>
+<h:column>
+	<f:facet name="header">Ilość</f:facet>
+	<h:inputText value="#{skladnik.ilosc}" size="3">
+		<f:ajax render="lacznie" event="keyup" execute="@form"></f:ajax>
+	</h:inputText>
+</h:column>
+<h:column>
+	<f:facet name="header">Łącznie</f:facet>
+	<h:outputText id="lacznie" value="#{skladnik.lacznie}"></h:outputText>
+</h:column>
+<h:column>
+	<f:facet name="header">Przelicz</f:facet>
+	<h:commandButton value="Przelicz">
+	<f:setPropertyActionListener value="#{skladnik}" target="#{koszykBean.wybranySkladnik}"></f:setPropertyActionListener>
+	<f:ajax render="lacznie" event="action" execute="@form"></f:ajax>
+	</h:commandButton>
+</h:column>
+<h:column>
+	<f:facet name="header">Usuń</f:facet>
+	<h:commandButton value="Usuń" action="#{koszykBean.usun}">
+	<f:setPropertyActionListener value="#{skladnik}" target="#{koszykBean.wybranySkladnik}"></f:setPropertyActionListener>
+		<f:ajax render="@form" event="action" execute="@form"></f:ajax>
+	</h:commandButton>
+</h:column>
+</h:dataTable>
+	<h:commandButton value="Do kasy" action="zakoncz"/>
+</h:form>
+</ui:define>
+ </ui:composition>
+
+</html>
